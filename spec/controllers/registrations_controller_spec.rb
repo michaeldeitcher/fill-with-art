@@ -48,6 +48,5 @@ RSpec.describe RegistrationsController, type: :controller do
         expect(json).to match(expected_json)
       end
     end
-
   end
 end

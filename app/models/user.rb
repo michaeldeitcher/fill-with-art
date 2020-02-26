@@ -14,6 +14,8 @@ class User < ApplicationRecord
     end
   end
 
+  has_many :bundles, foreign_key: 'creator_id'
+
   private
 
   def generate_authentication_token
