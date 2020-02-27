@@ -1,8 +1,9 @@
 class BundlesController < ApplicationController
-  # before_action :verify_user_is_logged_in
+  before_action :verify_user_is_logged_in
 
   def index
-    render json: {}.as_json, status: :ok
+    bundles = current_user.bundles.order(updated_at: 'desc')
+    render json: BundleSerializer.new(bundles).serialized_json, status: :ok
   end
 
   def create
@@ -20,6 +21,11 @@ class BundlesController < ApplicationController
     else
       render json: { errors: ErrorSerializer.serialize(bundle) }, status: 422
     end
+  end
+
+  def show
+    bundle = current_user.bundles.find(params[:id])
+    render json: BundleSerializer.new(bundle).serialized_json
   end
 
   private
