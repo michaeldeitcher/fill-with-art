@@ -21,4 +21,9 @@ RSpec.describe Bundle, type: :model do
     @bundle.image = nil
     expect(@bundle).to_not be_valid
   end
+
+  it 'should create a friendly_id slug after save' do
+    @bundle.save!
+    expect(Bundle.friendly.find(@bundle.reload.friendly_id)).to_not be_nil
+  end
 end

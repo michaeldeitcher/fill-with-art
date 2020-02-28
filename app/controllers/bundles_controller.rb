@@ -12,7 +12,7 @@ class BundlesController < ApplicationController
     if bundle.save
       json = {
         data: {
-          id: bundle.id,
+          id: bundle.friendly_id,
           type: 'Bundle',
           attributes: bundle.attributes.slice('title')
         }
@@ -24,7 +24,7 @@ class BundlesController < ApplicationController
   end
 
   def show
-    bundle = current_user.bundles.find(params[:id])
+    bundle = current_user.bundles.friendly.find(params[:id])
     render json: BundleSerializer.new(bundle).serialized_json
   end
 

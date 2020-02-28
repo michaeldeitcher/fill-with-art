@@ -57,8 +57,7 @@ RSpec.describe BundlesController, type: :controller do
 
     context "with logged in request" do
       it 'should return a bundle' do
-        get :show, params: {id: @bundle.id}
-        p response.body
+        get :show, params: {id: @bundle.friendly_id}
         expect(response).to have_http_status :success
       end
     end
