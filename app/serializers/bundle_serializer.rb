@@ -7,7 +7,7 @@ class BundleSerializer
   end
 
   attribute :image_url do |object|
-    Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true) if object.image.attached?
+    Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true) if object.image.try(:attached?)
   end
 
   attribute :path do |object|
