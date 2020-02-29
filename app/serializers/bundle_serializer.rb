@@ -1,6 +1,6 @@
 class BundleSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :title
+  attributes :title, :friendly_id
 
   attribute :created_at do |object|
     object.created_at.getutc.iso8601
@@ -8,9 +8,5 @@ class BundleSerializer
 
   attribute :image_url do |object|
     Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true) if object.image.try(:attached?)
-  end
-
-  attribute :path do |object|
-    "/bundle/#{object.title}-#{object.id}"
   end
 end
