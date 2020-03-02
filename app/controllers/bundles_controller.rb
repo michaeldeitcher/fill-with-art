@@ -10,14 +10,7 @@ class BundlesController < ApplicationController
     bundle = Bundle.new(bundle_params)
     bundle.creator = current_user
     if bundle.save
-      json = {
-        data: {
-          id: bundle.friendly_id,
-          type: 'Bundle',
-          attributes: bundle.attributes.slice('title')
-        }
-      }.to_json
-      render json: json, status: :created
+      render json: BundleSerializer.new(bundle).serialized_json, status: :created
     else
       render json: { errors: ErrorSerializer.serialize(bundle) }, status: 422
     end
