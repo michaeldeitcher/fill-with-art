@@ -2,11 +2,15 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user_from_token!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   protected
   def verify_user_is_logged_in
-    current_user ? true : render_unauthorized
+    if current_user
+      true
+    else
+      render json: {message: 'Sorry, not found.'}, status: :not_found
+    end
   end
 
   private

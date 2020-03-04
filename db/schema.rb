@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_032827) do
+ActiveRecord::Schema.define(version: 2020_03_04_045947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,16 @@ ActiveRecord::Schema.define(version: 2020_02_28_032827) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "bundle_sections", force: :cascade do |t|
+  create_table "bundle_contributions", force: :cascade do |t|
     t.bigint "bundle_id"
-    t.integer "section_order"
+    t.integer "contribution_order"
     t.text "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["bundle_id"], name: "index_bundle_sections_on_bundle_id"
+    t.string "anonymous_token"
+    t.bigint "creator_id"
+    t.index ["bundle_id"], name: "index_bundle_contributions_on_bundle_id"
+    t.index ["creator_id"], name: "index_bundle_contributions_on_creator_id"
   end
 
   create_table "bundles", force: :cascade do |t|
@@ -51,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_032827) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.string "anonymous_token"
     t.index ["creator_id"], name: "index_bundles_on_creator_id"
     t.index ["slug"], name: "index_bundles_on_slug", unique: true
   end
@@ -82,5 +86,6 @@ ActiveRecord::Schema.define(version: 2020_02_28_032827) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bundle_contributions", "users", column: "creator_id"
   add_foreign_key "bundles", "users", column: "creator_id"
 end

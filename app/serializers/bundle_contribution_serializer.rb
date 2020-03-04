@@ -1,8 +1,6 @@
-class BundleSerializer
+class BundleContributionSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :title, :friendly_id
-
-  has_many :bundle_contributions, serializer: BundleContributionSerializer
+  attributes :text, :contribution_order
 
   attribute :created_at do |object|
     object.created_at.getutc.iso8601
