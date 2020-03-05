@@ -21,6 +21,6 @@ FactoryBot.define do
   factory :bundle_contribution do
     text Faker::StarTrek.location
     image {FilesTestHelper.jpg}
-    anonymous_token Faker::Internet.device_token
+    anonymous_token { Digest::SHA1.hexdigest([Time.now, rand].join) }
   end
 end

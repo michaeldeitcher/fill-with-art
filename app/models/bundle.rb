@@ -5,7 +5,7 @@ class Bundle < ApplicationRecord
   def creator_name() creator.try(:username) end
 
   belongs_to :creator, class_name: 'User'
-  has_many :bundle_contributions
+  has_many :bundle_contributions, dependent: :destroy
   has_one_attached :image
 
   validates :title, length: 3..20

@@ -50,7 +50,7 @@ RSpec.describe BundlesController, type: :controller do
 
   describe "get #bundle" do
     context "with basic bundle" do
-      let(:bundle) {create(:bundle, creator: user)}
+      let(:bundle) { create(:bundle, creator: user) }
       it 'should return a bundle' do
         get :show, params: {id: bundle.friendly_id}
         expect(response).to have_http_status :success
@@ -60,9 +60,9 @@ RSpec.describe BundlesController, type: :controller do
     context "with bundle with contributions" do
       let(:bundle) {create(:bundle, :with_contributions, creator: user)}
       it 'should return a bundle' do
-        get :show, params: {id: bundle.friendly_id}
+        get :show, params: { id: bundle.friendly_id }
         content =  JSON.parse(response.body)
-        expect(content['data']['relationships']['bundle_contributions']['data'].length).to be(2)
+        expect(content['included'].length).to be(2)
         expect(response).to have_http_status :success
       end
     end

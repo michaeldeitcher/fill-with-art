@@ -11,4 +11,9 @@ class BundleSerializer
   attribute :image_url do |object|
     Rails.application.routes.url_helpers.rails_blob_path(object.image, only_path: true) if object.image.try(:attached?)
   end
+
+  attribute :last_anonymous_token_contribution do |object|
+    last_contribution = object.bundle_contributions.last || object
+    last_contribution.anonymous_token
+  end
 end
