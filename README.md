@@ -1,4 +1,5 @@
-# README
+# Fill With Art
+[![Actions Status](https://github.com/{owner}/{repo}/workflows/{workflow_name}/badge.svg)](https://github.com/{owner}/{repo}/actions)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
