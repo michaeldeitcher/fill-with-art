@@ -1,5 +1,5 @@
 # Fill With Art
-[![Actions Status](https://github.com/{owner}/{repo}/workflows/{workflow_name}/badge.svg)](https://github.com/{owner}/{repo}/actions)
+[![Actions Status](https://github.com/michaeldeitcher/fill-with-art/workflows/Run Rails Specs/badge.svg)](https://github.com/michaeldeitcher/fill-with-art/actions)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
