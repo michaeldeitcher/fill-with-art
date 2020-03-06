@@ -1,6 +1,6 @@
 class BundleContributionSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :text, :contribution_order
+  attributes :text, :contribution_order, :anonymous_token
 
   attribute :created_at do |object|
     object.created_at.getutc.iso8601

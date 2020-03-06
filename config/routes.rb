@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :bundles, only: [:index, :create, :show]
   resources :bundle_contributions, only: [:create, :update]
   resources :anonymous_tokens, only: :create
+
+  mount ActionCable.server => '/cable'
 end
