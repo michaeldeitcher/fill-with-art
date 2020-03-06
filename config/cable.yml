@@ -6,4 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: redis://redistogo:a1227c8509b9d5e355163d171d0e2ff8@pike.redistogo.com:10499/
+  url: ENV["REDIS_URL"]
