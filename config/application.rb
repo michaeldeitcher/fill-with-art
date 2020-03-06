@@ -30,7 +30,7 @@ module FillWithArt
     # the framework and any gems in your application.
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins '*', /https:\/\/(.)*.bundlebundle.org/
         resource '*', headers: :any, methods: [:get, :post, :options]
       end
     end
