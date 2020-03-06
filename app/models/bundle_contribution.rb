@@ -1,5 +1,5 @@
 class BundleContribution < ApplicationRecord
-  belongs_to :bundle
+  belongs_to :bundle, touch: true
   has_one_attached :image
   belongs_to :creator, class_name: 'User', optional: true
 

@@ -35,6 +35,10 @@ RSpec.describe BundleContribution, type: :model do
       first_contribution.anonymous_token = first_contribution.bundle.anonymous_token
       expect(first_contribution).to_not be_valid
     end
+
+    it 'should update the updated at of the bundle' do
+      expect{ first_contribution.save! }.to change {bundle.updated_at}
+    end
   end
 
   context 'on second contribution' do
