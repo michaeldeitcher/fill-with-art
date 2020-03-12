@@ -47,3 +47,6 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rspec
+          
+      - name: Codecov
+        uses: codecov/codecov-action@v1
